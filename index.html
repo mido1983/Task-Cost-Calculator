@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGRKBDWNLT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CGRKBDWNLT');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Cost Calculator | Online Task and Project Cost Calculator</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <title>Task Cost Calculator | Online Task and Project Cost Calculator</title>
-
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-53M3TBG8');</script>
+  <!-- End Google Tag Manager -->
   <!-- Meta Description -->
   <meta name="description" content="Task Cost Calculator is a convenient online tool for calculating the cost of tasks and projects. Add tasks, account for time and discounts, and generate professional PDF reports. Perfect for freelancers, agencies, and small businesses.">
 
@@ -50,12 +65,142 @@
       "datePublished": "2024-11-06"
     }
   </script>
+  <style>
+
+
+
+  /* Общие стили для мобильных устройств */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      h1, h2 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      #taskTable tbody tr td {
+        flex-direction: column;
+      }
+
+      #taskTable tbody td input {
+        margin-bottom: 5px;
+      }
+
+      #taskTable tbody td span {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .row.mb-3 > .col-md-6 {
+        width: 100%;
+      }
+
+      /* Таблица задач */
+      #taskTable {
+        font-size: 0.85rem;
+      }
+
+      #taskTable thead {
+        display: none;
+      }
+
+      #taskTable tbody tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+
+      #taskTable tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+      }
+
+      #taskTable tbody td .form-control {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
+
+      #taskTable tbody td span {
+        font-weight: bold;
+      }
+
+      .text-right {
+        text-align: center;
+      }
+
+      /* Кнопки */
+      .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .text-center.mb-4 button {
+        margin-bottom: 10px;
+      }
+
+      /* Секция Summary */
+      .summary {
+        font-size: 0.9rem;
+      }
+
+      .summary h4 {
+        text-align: center;
+      }
+
+      .summary p {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1, h2 {
+        font-size: 1.25rem;
+      }
+
+      .btn {
+        font-size: 0.8rem;
+      }
+
+      #taskTable tbody tr {
+        padding: 8px;
+      }
+    }
+  </style>
 
   <!-- Favicon -->
   <link rel="icon" href="http://taskcostcalculator.cloud/assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body class="container my-4">
-
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53M3TBG8"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <h1 class="text-center mb-4">Task Cost Calculator</h1>
 
 <!-- Client Information Form -->
@@ -156,23 +301,40 @@
     tasks.push(task);
 
     row.innerHTML = `
-      <td><input type="text" class="form-control" value="${task.description}" oninput="updateTask(${tasks.length - 1}, 'description', this.value)" placeholder="Task description"></td>
-      <td>
-        <div class="form-inline">
-          <input type="number" class="form-control mr-2" style="width: 60px;" value="${task.timeHours}" min="0" oninput="validateHours(this, ${tasks.length - 1})" placeholder="Hrs">
-          <span>:</span>
-          <input type="number" class="form-control ml-2" style="width: 60px;" value="${task.timeMinutes}" min="0" max="60" oninput="validateMinutes(this, ${tasks.length - 1})" placeholder="Min">
-        </div>
-      </td>
-      <td><input type="number" class="form-control" value="${task.hourlyRate}" oninput="updateTask(${tasks.length - 1}, 'hourlyRate', parseFloat(this.value))" placeholder="Hourly rate"></td>
-      <td><input type="number" class="form-control" value="${task.discount}" oninput="updateTask(${tasks.length - 1}, 'discount', parseFloat(this.value))" placeholder="Discount"></td>
-      <td class="cost">$0.00</td>
-      <td class="text-center"><input type="checkbox" ${task.free ? 'checked' : ''} onchange="updateTask(${tasks.length - 1}, 'free', this.checked)"></td>
-      <td class="text-center">
-        <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Delete</button>
-        <button class="btn btn-secondary btn-sm" onclick="duplicateTask(${tasks.length - 1})">Duplicate</button>
-      </td>
-    `;
+  <td>
+    <span>Task Description</span>
+    <input type="text" class="form-control" value="${task.description}" oninput="updateTask(${tasks.length - 1}, 'description', this.value)" placeholder="Task description">
+  </td>
+  <td>
+    <span>Time (hours:minutes)</span>
+    <div class="form-inline">
+      <input type="number" class="form-control mr-2" style="width: 60px;" value="${task.timeHours}" min="0" oninput="validateHours(this, ${tasks.length - 1})" placeholder="Hrs">
+      <span>:</span>
+      <input type="number" class="form-control ml-2" style="width: 60px;" value="${task.timeMinutes}" min="0" max="60" oninput="validateMinutes(this, ${tasks.length - 1})" placeholder="Min">
+    </div>
+  </td>
+  <td>
+    <span>Hourly Rate ($)</span>
+    <input type="number" class="form-control" value="${task.hourlyRate}" oninput="updateTask(${tasks.length - 1}, 'hourlyRate', parseFloat(this.value))" placeholder="Hourly rate">
+  </td>
+  <td>
+    <span>Discount (%)</span>
+    <input type="number" class="form-control" value="${task.discount}" oninput="updateTask(${tasks.length - 1}, 'discount', parseFloat(this.value))" placeholder="Discount">
+  </td>
+  <td>
+    <span>Cost ($)</span>
+    <div class="cost">$0.00</div>
+  </td>
+  <td>
+    <span>Free Task</span>
+    <input type="checkbox" ${task.free ? 'checked' : ''} onchange="updateTask(${tasks.length - 1}, 'free', this.checked)">
+  </td>
+  <td class="text-center">
+    <button class="btn btn-danger btn-sm" onclick="deleteTask(this)">Delete</button>
+    <button class="btn btn-secondary btn-sm" onclick="duplicateTask(${tasks.length - 1})">Duplicate</button>
+  </td>
+`;
+
   }
 
   function validateHours(input, index) {
